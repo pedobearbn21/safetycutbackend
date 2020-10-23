@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '93uv0g!54p0v)2kzg$=*746qoav)xvn6mnnmh_d7+^wwtv2fdj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','infinite-taiga-47087.herokuapp.com']
 
