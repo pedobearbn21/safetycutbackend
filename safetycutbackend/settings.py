@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
         'TEST': {
-            'NAME': 'd99pkjvhfi81so',
+            'NAME': 'd541e66p260hnr',
         }
     }
 }
