@@ -21,7 +21,7 @@ class GetIdRoom(generics.RetrieveUpdateDestroyAPIView):
 
 class BookingRoomall(generics.ListCreateAPIView):
     queryset = BookingClass.objects.all()
-    serializer_classs = BookingClassSerializers
+    serializer_class = BookingClassSerializers
 
 class BookingRoomId(generics.RetrieveUpdateDestroyAPIView):
     queryset = BookingClass.objects.all()
