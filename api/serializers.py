@@ -1,6 +1,17 @@
 from rest_framework import serializers
 from django.core.serializers import serialize
-from .models import Room, BookingClass, Building, ClassRoom
+from .models import Room, BookingClass, Building, ClassRoom, Floor
+
+class BuildingSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Building
+        fields = '__all__'
+
+class FloorSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Floor
+        field = '__all__'
+
 
 class BookingClassSerializers(serializers.ModelSerializer):
     class Meta: 

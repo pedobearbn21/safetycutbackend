@@ -3,10 +3,22 @@ from django.utils import timezone
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from rest_framework import generics
-from .models import BookingClass, Room, ClassRoom
+from .models import BookingClass, Room, ClassRoom, Building, Floor
 from rest_framework import serializers
-from .serializers import RoomSerializers, BookingClassSerializers
+from .serializers import RoomSerializers, BookingClassSerializers, FloorSerializers, BuildingSerializers
 from datetime import datetime
+
+class GetAllBuilding(generics.ListAPIView):
+    queryset = Building.objects.all()
+    serializer_class = BuildingSerializers
+
+
+class GetFloorById(generics.RetrieveAPIView):
+    queryset = Floor.objects.all()
+    serializer_class = FloorSerializers
+    def get_queryset(self):
+        return Floor.objects.filter(building = self.kwargs['id'])
+        
 
 
 class GetAllRoom(generics.ListCreateAPIView):
