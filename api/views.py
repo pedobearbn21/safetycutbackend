@@ -23,7 +23,7 @@ class GetRoomByFloorID(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializers
     def get_queryset(self):
-        return Room.objects.filter(room = self.kwargs['id'])
+        return Room.objects.filter(floor = self.kwargs['id'])
 
 class GetAllRoom(generics.ListCreateAPIView):
     queryset = Room.objects.all()
