@@ -17,13 +17,13 @@ class GetFloorById(generics.ListAPIView):
     queryset = Floor.objects.all()
     serializer_class = FloorSerializers
     def get_queryset(self):
-        return Floor.objects.filter(building = self.kwargs['id'])
+        return Floor.objects.filter(building = self.kwargs['id']).order_by('id')
         
 class GetRoomByFloorID(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializers
     def get_queryset(self):
-        return Room.objects.filter(floor = self.kwargs['id'])
+        return Room.objects.filter(floor = self.kwargs['id']).order_by('id')
 
 class GetAllRoom(generics.ListCreateAPIView):
     queryset = Room.objects.all()
