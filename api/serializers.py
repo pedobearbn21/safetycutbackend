@@ -8,9 +8,10 @@ class BuildingSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 class FloorSerializers(serializers.ModelSerializer):
+    # building_of_floor = BuildingSerializers(many=True)
     class Meta:
         model = Floor
-        field = '__all__'
+        fields = '__all__'
 
 
 class BookingClassSerializers(serializers.ModelSerializer):

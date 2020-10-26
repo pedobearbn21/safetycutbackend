@@ -11,7 +11,7 @@ class Building(models.Model):
     
 class Floor(models.Model):
     floor_name = models.CharField(max_length=20)
-    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    building = models.ForeignKey(Building, on_delete=models.CASCADE, related_name='building_of_floor')
     def __str__(self):
         return f'Building :{self.building.building_name}, Floor: {self.floor_name}'
     
