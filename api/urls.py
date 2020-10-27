@@ -14,5 +14,4 @@ urlpatterns = [
 
     path('floor/<int:id>', views.GetFloorById.as_view()),
     
-    url(r'^$', views.MainView.as_view())
 ]
