@@ -70,6 +70,12 @@ def updateStatusRoom(DataObjectDate,status):
     room.save()
     return DataObjectDate
 
+def updateRoom(Dataobj, status):
+    room = Room.objects.get(id=Dataobj.id)
+    room.status = status
+    room.save()
+    return DataObjectDate
+
 def updater():
         nowtime = timezone.now()
         now = datetime(nowtime.year,nowtime.month,nowtime.day,nowtime.hour,nowtime.minute,nowtime.second)
@@ -77,17 +83,23 @@ def updater():
         data_waiting_class = ClassRoom.objects.all()
         
         #Condition When Class Is End or Not In Class Time
-        NotUsedRoom = list(filter(lambda x: check_notinbetweendates(x.start_time,x.end_time,now), data_waiting_booking))+list(filter(lambda x: check_notinbetweendates(x.start_time,x.end_time,now), data_waiting_class))
+        # NotUsedRoom = list(filter(lambda x: check_notinbetweendates(x.start_time,x.end_time,now), data_waiting_booking))+list(filter(lambda x: check_notinbetweendates(x.start_time,x.end_time,now), data_waiting_class))
+        NotUsedRoom = list(filter(lambda x: check_notinbetweendates(x.start_time,x.end_time,now), data_waiting_booking))
         print('NotUse',NotUsedRoom)
         updateNotUseRoom = list(map(lambda x: updateStatusRoom(x,"0"),NotUsedRoom))
         #end
 
         #Conditon When Class Will I Start
-        UseRoom = list(filter(lambda x: not check_notinbetweendates(x.start_time,x.end_time,now),data_waiting_booking))+list(filter(lambda x: not check_notinbetweendates(x.start_time,x.end_time,now),data_waiting_class))
+        # UseRoom = list(filter(lambda x: not check_notinbetweendates(x.start_time,x.end_time,now),data_waiting_booking))+list(filter(lambda x: not check_notinbetweendates(x.start_time,x.end_time,now),data_waiting_class))
+        UseRoom = list(filter(lambda x: not check_notinbetweendates(x.start_time,x.end_time,now),data_waiting_booking))
         print('Use',UseRoom)
         updateForUseRoom = list(map(lambda x: updateStatusRoom(x,"1"),UseRoom))
         # end
 
+        # RoomNoClass
+        data_room = Room.objects.all()
+        noclass = list(filter(lambda x: x.rooms_booking == [],data_room))
+        updateForNoClass = list(map(lambda x: updateRoom(x,"0"),noclass))
         #Not in ClassRoom & Not in BookingRoom
 
 
