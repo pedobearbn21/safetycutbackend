@@ -29,14 +29,14 @@ class ClassRoomSerializers(serializers.ModelSerializer):
 class  RoomSerializers(serializers.ModelSerializer):
     rooms_booking = BookingClassSerializers(many=True,read_only=True)
     rooms_class = ClassRoomSerializers(many=True, read_only=True)
-    # bookingclassroom = serializers.SerializerMethodField('get_booking')
-    # def get_booking(self, obj):
-    #     data = BookingClass.objects.filter(room = obj).values()
-    #     serializer_class  = BookingClassSerializers
-    #     return data
+    bookingclassroom = serializers.SerializerMethodField('get_booking')
+    def get_booking(self, obj):
+        data = BookingClass.objects.filter(room = obj).values().order_by('start_time')
+        serializer_class  = BookingClassSerializers
+        return data
 
 
     class Meta:
         model = Room
-        fields = [ 'id', 'room_name', 'floor','status', 'rooms_booking', 'rooms_class' ]
+        fields = [ 'id', 'room_name', 'floor','status', 'bookingclassroom', 'rooms_class', 'rooms_booking' ]
 
